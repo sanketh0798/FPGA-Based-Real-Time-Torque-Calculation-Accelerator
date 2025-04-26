@@ -1,0 +1,36 @@
+`timescale 1 ns / 1 ps
+
+module TorqCalc_IP_v1_0_M00_AXIS #
+(
+    parameter integer C_M_AXIS_TDATA_WIDTH = 32,
+    parameter integer C_M_START_COUNT = 32
+)
+(
+    input wire  M_AXIS_ACLK,
+    input wire  M_AXIS_ARESETN,
+    output reg  M_AXIS_TVALID,
+    output reg [C_M_AXIS_TDATA_WIDTH-1 : 0] M_AXIS_TDATA,
+    output wire [(C_M_AXIS_TDATA_WIDTH/8)-1 : 0] M_AXIS_TSTRB,
+    output wire  M_AXIS_TLAST,
+    input wire  M_AXIS_TREADY,
+
+    input wire [47:0] processed_data
+);
+
+assign M_AXIS_TSTRB = {(C_M_AXIS_TDATA_WIDTH/8){1'b1}};
+assign M_AXIS_TLAST = 1'b0;  // No packet boundary in this simple example
+
+always @(posedge M_AXIS_ACLK) begin
+    if (!M_AXIS_ARESETN) begin
+        M_AXIS_TVALID <= 1'b0;
+        M_AXIS_TDATA <= 0;
+    end else begin
+        if (M_AXIS_TREADY || !M_AXIS_TVALID) begin
+            M_AXIS_TVALID <= 1'b1;
+            M_AXIS_TDATA <= processed_data[C_M_AXIS_TDATA_WIDTH-1:0];  // Truncate to 32 bits
+        end
+        // else keep TVALID asserted and data stable until ready
+    end
+end
+
+endmodule
