@@ -7,8 +7,8 @@ This project implements a custom FPGA-based hardware accelerator for real-time t
 
 ## Block Diagram
 
-![Block Diagram](link/to/your/block_diagram_image.png)  
-*(Replace `link/to/your/block_diagram_image.png` with the actual URL or relative path to your block diagram image.)*
+<img width="1070" alt="image" src="https://github.com/user-attachments/assets/04ab3dbe-e5b2-45e7-8b25-d22bf5abd57e" />
+
 
 ## Block Diagram Overview
 
