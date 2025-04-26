@@ -29,6 +29,7 @@ This project implements a custom FPGA-based hardware accelerator for real-time t
     -   *S00\_AXIS*: AXI4-Stream slave for receiving input data.
     -   *M00\_AXIS*: AXI4-Stream master for outputting processed results.
     -   *DSP48* (inside TorqCalc\_IP): Performs high-speed multiply-accumulate for torque computation.
+    -   the .v files for the top level module, 2 slaves and 1 master modules are attached in the repo.
 -   **AXI Stream FIFO (\`axis\_data\_fifo\_0\`)**
 -   **AXI BRAM Controller (\`axi\_bram\_ctrl\_0\`)**
 -   **Block Memory Generator (\`blk\_mem\_gen\_0\`)**
